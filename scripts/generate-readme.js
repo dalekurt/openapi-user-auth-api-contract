@@ -4,7 +4,7 @@ const yaml = require('js-yaml');
 try {
   const doc = yaml.load(fs.readFileSync('./openapi/openapi.yaml', 'utf8'));
 
-  // Define apiTitle with your API title from the OpenAPI file
+  // Extract the title from the OpenAPI document
   const apiTitle = doc.info.title;
 
   // Extract tags from the OpenAPI file
@@ -43,17 +43,16 @@ try {
 
   // Customize your README content here using the 'doc', 'apiTitle', 'tableOfContents', and 'usageSection' variables
   const readmeContent = `
-  # ${apiTitle} API Documentation
+# ${apiTitle} API Documentation
 
-  This documentation provides details about the ${apiTitle} API.
+This documentation provides details about the ${apiTitle} API.
 
-  ## Table of Contents
-  ${tableOfContents}
+## Table of Contents
+${tableOfContents}
 
-  ## Usage
-  ${usageSection}
-
-  `;
+## Usage
+${usageSection}
+`;
 
   // Write the README.md file
   fs.writeFileSync('./README.md', readmeContent);
