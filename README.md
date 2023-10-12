@@ -1,1 +1,1 @@
-User Auth API Contract
+# User Authentication API

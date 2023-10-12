@@ -1,0 +1,33 @@
+name: Generate README
+
+on:
+  push:
+    branches:
+      - main # Adjust this to your main branch
+
+jobs:
+  generate-readme:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: 14
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Generate README
+        run: npm run generate-readme # Adjust this to your script
+
+      - name: Commit changes
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add README.md
+          git commit -m "Automated README.md update"
+          git push
