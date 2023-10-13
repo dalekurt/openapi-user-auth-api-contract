@@ -4,6 +4,9 @@
 # Ignore all files except README.md
 /*
 !/README.md
+!/generate-readme-esm.js
+!/generate-readme.js
+!/renovate.json
 
 # Ignore node_modules and other unnecessary files
 node_modules/
