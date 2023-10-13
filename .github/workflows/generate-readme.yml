@@ -4,6 +4,8 @@ on:
   push:
     branches:
       - main
+    # paths:
+    #     - 'openapi.yaml'
 
 jobs:
   generate-readme:
@@ -18,8 +20,14 @@ jobs:
         with:
           node-version: "14"
 
-      - name: Install markdown-table
-        run: npm install swagger-jsdoc markdown-table
+      - name: Install required npm packages
+        run: npm install -g redoc-cli
+
+      - name: Generate README from OpenAPI
+        run: redoc-cli bundle openapi.yaml -o generated-readme.html
+
+      - name: Convert HTML to Markdown
+        run: pandoc -s generated-readme.html -o README.md
 
       # - name: Debug - List contents of scripts directory
       #   run: ls -l ./scripts
@@ -27,9 +35,9 @@ jobs:
       # - name: Debug - Cat the contents of generate-readme-esm.js
       #   run: cat ./scripts/generate-readme-esm.js
 
-      - name: Generate README (ESM)
-        run: |
-          node ./scripts/generate-readme.js
+      # - name: Generate README (ESM)
+      #   run: |
+      #     node ./scripts/generate-readme.js
 
       - name: Commit & Push changes
         uses: actions-js/push@master
