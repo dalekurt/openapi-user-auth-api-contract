@@ -14,8 +14,8 @@ jobs:
         uses: actions/checkout@v2
 
       # debug
-      - name: Print OpenAPI file
-        run: cat openapi/openapi.yaml
+      #   - name: Print OpenAPI file
+      #     run: cat openapi/openapi.yaml
 
       - name: Set up Node.js
         uses: actions/setup-node@v2
@@ -28,10 +28,14 @@ jobs:
       - name: Generate README
         run: node ./scripts/generate-readme.js # Fix - Specify the correct path to the script
 
-      - name: Commit and push changes
-        run: |
-          git config --local user.email "dalekurt@lunarops.io"
-          git config --local user.name "GitHub Action"
-          git add README.md
-          git commit -m "Generate README"
-          git push https://${{ secrets.PAT_TOKEN }}@github.com/${{ github.repository }}.git HEAD:main
+      - name: Commit & Push changes
+        uses: actions-js/push@master
+        with:
+          github_token: ${{ secrets.PAT_TOKEN }}
+    #   - name: Commit and push changes
+    #     run: |
+    #       git config --local user.email "action@github.com"
+    #       git config --local user.name "GitHub Action"
+    #       git add README.md
+    #       git commit -m "Generate README"
+    #       git push https://${{ secrets.PAT_TOKEN }}@github.com/${{ github.repository }}.git HEAD:main
