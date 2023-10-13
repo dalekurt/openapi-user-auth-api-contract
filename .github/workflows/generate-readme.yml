@@ -21,7 +21,7 @@ jobs:
           registry-url: "https://registry.npmjs.org"
 
       - name: Set NODE_OPTIONS to enable ESM
-        run: echo "::set-env name=NODE_OPTIONS::--experimental-modules"
+        run: echo "NODE_OPTIONS=--experimental-modules" >> $GITHUB_ENV
 
       - name: Install markdown-table
         run: npm install swagger-jsdoc markdown-table
