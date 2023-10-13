@@ -25,7 +25,7 @@ jobs:
       - name: Install npm dependencies and generate README
         run: |
           # Install npm dependencies
-          npm install
+          # npm install
 
           # Install the required Node.js modules
           npm install swagger-jsdoc markdown-table
