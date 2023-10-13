@@ -27,9 +27,6 @@ jobs:
       - name: Debug - List contents of scripts directory
         run: ls -l ./scripts
 
-      - name: Debug - Cat the contents of scripts directory
-        run: cat ./scripts
-
       - name: Debug - Cat the contents of generate-readme-esm.js
         run: cat ./scripts/generate-readme-esm.js
 
