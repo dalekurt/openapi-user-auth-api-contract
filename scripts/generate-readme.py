@@ -11,57 +11,55 @@ def format_path(path, path_data):
     formatted_path = f'**{path_data.get("summary", "No summary provided")} (ex {path})**\n----\n'
     formatted_path += f'**The description (ex {path_data.get("description", "No description provided")})**\n'
     formatted_path += f'* **URL Params**\n'
-    
+
     parameters = path_data.get("parameters", [])
     if parameters:
         formatted_path += '  *Required:* ' + ', '.join([f'{param["name"]}=[{param["type"]}]' for param in parameters]) + '\n'
     else:
         formatted_path += '  None\n'
-    
+
     formatted_path += '* **Data Params**\n'
     if "requestBody" in path_data:
         try:
-            json_data = json.loads(path_data["requestBody"])
-            formatted_path += '  ```json\n' + json.dumps(json_data, indent=2) + '\n  ```\n'
+            # Serialize the dictionary to a JSON-formatted string
+            json_data = json.dumps(path_data["requestBody"], indent=2)
+            formatted_path += f'  ```json\n{json_data}\n  ```\n'
         except json.JSONDecodeError:
             formatted_path += '  None\n'
     else:
         formatted_path += '  None\n'
 
-    formatted_path += '* **Headers**\n'
-    headers = path_data.get("requestHeaders", {})
-    if headers:
-        for header, description in headers.items():
-            formatted_path += f'  {header}: {description}\n'
-    else:
-        formatted_path += '  None\n'
-
-    formatted_path += '* **Success Response:**\n'
-    formatted_path += '* **Code:** 200\n'
-    formatted_path += '  **Content:**  `{ <success_object> }`\n'
-
-    formatted_path += '* **Error Response:**\n'
-    error_responses = path_data.get("errorResponses", [])
-    if error_responses:
-        for response in error_responses:
-            formatted_path += f'  * **Code:** {response["code"]}\n'
-            formatted_path += f'  **Content:** {response["description"]}\n'
-    else:
-        formatted_path += '  None\n'
-
+    # Add more sections as needed, e.g., headers, responses
     return formatted_path
-
 
 # Define a function to format the entire API documentation
 def format_api(api_data):
     formatted_api = ""
     paths = api_data.get("paths", {})
     for path, path_data in paths.items():
-        formatted_api += f'**{path_data.get("summary", "No summary provided")}**\n'
-        for method, method_data in path_data.items():
-            if method not in ["parameters", "summary", "description"]:
-                formatted_api += f'{method.upper()} {path}\n'
-                formatted_api += format_path(path, method_data)
+        formatted_api += f'**{path_data.get("summary", "No summary provided")} (ex {path})**\n----\n'
+        formatted_api += f'**The description (ex {path_data.get("description", "No description provided")})**\n'
+        formatted_api += f'* **URL Params**\n'
+        
+        parameters = path_data.get("parameters", [])
+        if parameters:
+            formatted_api += '  *Required:* ' + ', '.join([f'{param["name"]}=[{param["type"]}]' for param in parameters]) + '\n'
+        else:
+            formatted_api += '  None\n'
+        
+        formatted_api += '* **Data Params**\n'
+        if "requestBody" in path_data:
+            try:
+                # Serialize the dictionary to a JSON-formatted string
+                json_data = json.dumps(path_data["requestBody"], indent=2)
+                formatted_api += f'  ```json\n{json_data}\n  ```\n'
+            except json.JSONDecodeError:
+                formatted_api += '  None\n'
+        else:
+            formatted_api += '  None\n'
+
+        # Add more sections as needed, e.g., headers, responses
+
     return formatted_api
 
 # Transform the OpenAPI specification into the desired Markdown format
