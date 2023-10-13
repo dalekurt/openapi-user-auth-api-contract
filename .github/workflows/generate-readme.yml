@@ -22,11 +22,14 @@ jobs:
         with:
           node-version: "14" # Use the Node.js version you need
 
-      - name: Install redoc-cli
-        run: npm install -g redoc-cli
+      - name: Install swagger2markup-cli
+        run: wget https://jcenter.bintray.com/io/github/swagger2markup/swagger2markup-cli/1.3.3/swagger2markup-cli-1.3.3.jar -O swagger2markup-cli.jar
 
-      - name: Generate README from OpenAPI spec
-        run: redoc-cli bundle -o README.md openapi/openapi.yaml
+      - name: Convert OpenAPI to AsciiDoc
+        run: java -jar swagger2markup-cli.jar convert -i openapi/openapi.yaml -f openapi -l ASYNC_API
+
+      - name: Convert AsciiDoc to Markdown
+        run: asciidoctor -b docbook -o README.md openapi/openapi.adoc
 
       - name: Commit & Push changes
         uses: actions-js/push@master
