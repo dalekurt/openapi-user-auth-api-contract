@@ -24,9 +24,9 @@ jobs:
       - name: Install markdown-table
         run: npm install swagger-jsdoc markdown-table
 
-      - name: Generate README
+      - name: Generate README (ESM)
         run: |
-          node ./generate-readme.js
+          node ./generate-readme-esm.js
         working-directory: scripts/
 
       - name: Commit & Push changes
