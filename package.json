@@ -1,0 +1,9 @@
+{
+    "dependencies": {
+      "swagger-jsdoc": "latest_version",
+      "markdown-table": "latest_version"
+    },
+    "scripts": {
+      "generate-readme": "node generate-readme.js"
+    }
+  }
