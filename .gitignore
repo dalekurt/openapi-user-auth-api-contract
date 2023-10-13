@@ -1,14 +1,2 @@
 # Ignore any file ending with _bak
 *_bak
-
-# Ignore all files except README.md
-/*
-!/README.md
-!/generate-readme-esm.js
-!/generate-readme.js
-!/renovate.json
-
-# Ignore node_modules and other unnecessary files
-node_modules/
-package.json
-package-lock.json
