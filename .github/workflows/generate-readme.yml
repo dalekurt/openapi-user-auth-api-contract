@@ -26,7 +26,7 @@ jobs:
       # - name: Generate README from OpenAPI
       #   run: redoc-cli bundle openapi/openapi.yaml -o generated-readme.html
       - name: Generate Structured JSON from OpenAPI
-        run: redoc-cli bundle openapi.yaml --output structured.json
+        run: redoc-cli bundle openapi/openapi.yaml --output structured.json
 
       - name: Install Python
         uses: actions/setup-python@v2
