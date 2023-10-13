@@ -39,7 +39,7 @@ jobs:
         run: pip install pyyaml
 
       - name: Generate README from OpenAPI
-        run: python scripts/generate_readme.py
+        run: python scripts/generate-readme.py
 
       - name: Commit & Push changes
         uses: actions-js/push@master
