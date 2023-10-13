@@ -1,6 +1,6 @@
-**get /admin/users/{userid}**
+**Retrieve User Information**
 ----
-  Retrieve User Information.
+  Retrieve specific user details by their unique ID, mobile number, or email address..
 * **URL Params**
   None
 * **Data Params**
@@ -17,9 +17,9 @@
   OR
   * **Code:** 401
   **Content:** `{ error : error : "You are unauthorized to make this request." }`
-**patch /admin/users/{userid}**
+**Update User Information**
 ----
-  Update User Information.
+  Modify user information, including first name, last name, email, mobile number, password, and activation status..
 * **URL Params**
   None
 * **Data Params**
@@ -109,9 +109,9 @@
   OR
   * **Code:** 401
   **Content:** `{ error : error : "You are unauthorized to make this request." }`
-**delete /admin/users/{userid}**
+**Delete User**
 ----
-  Delete User.
+  Permanently remove an existing user and their associated data..
 * **URL Params**
   None
 * **Data Params**
@@ -153,9 +153,9 @@
   OR
   * **Code:** 401
   **Content:** `{ error : error : "You are unauthorized to make this request." }`
-**post /admin/users**
+**Create New User**
 ----
-  Create New User.
+  Add a new user.
 * **URL Params**
   None
 * **Data Params**
@@ -226,9 +226,9 @@
   OR
   * **Code:** 401
   **Content:** `{ error : error : "You are unauthorized to make this request." }`
-**get /admin/users**
+**Get All Users**
 ----
-  Get All Users.
+  Retrieve a list of all users.
 * **URL Params**
   None
 * **Data Params**
@@ -245,9 +245,9 @@
   OR
   * **Code:** 401
   **Content:** `{ error : error : "You are unauthorized to make this request." }`
-**get /users/{userid}**
+**Retrieve User Information**
 ----
-  Retrieve User Information.
+  Retrieve specific user details by their unique ID..
 * **URL Params**
   None
 * **Data Params**
@@ -264,9 +264,9 @@
   OR
   * **Code:** 401
   **Content:** `{ error : error : "You are unauthorized to make this request." }`
-**patch /users/{userid}**
+**Update User Information**
 ----
-  Update User Information.
+  Modify user information, including first name, last name, email, mobile number, password, and activation status..
 * **URL Params**
   None
 * **Data Params**
@@ -342,9 +342,9 @@
   OR
   * **Code:** 401
   **Content:** `{ error : error : "You are unauthorized to make this request." }`
-**post /users**
+**Create New User**
 ----
-  Create New User.
+  Add a new user to your system effortlessly..
 * **URL Params**
   None
 * **Data Params**
