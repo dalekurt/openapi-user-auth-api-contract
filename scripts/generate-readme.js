@@ -1,6 +1,6 @@
 const fs = require('fs');
 const swaggerJSDoc = require('swagger-jsdoc');
-const markdownTable = require('markdown-table');
+import markdownTable from 'markdown-table';
 
 // Define options for swagger-jsdoc
 const options = {
