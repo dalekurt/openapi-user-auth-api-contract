@@ -42,6 +42,9 @@ jobs:
       - name: Convert HTML to Markdown
         run: |
           python -c "import html2md; html = open('generated-readme.html').read(); markdown = html2md.convert(html); open('README.md', 'w').write(markdown)"
+
+      - name: Remove Unwanted Content
+        run: sed -i '/<script> const __redoc_state = {/,/path.../{//!d}' README.md
       # - name: Convert HTML to Markdown
       #   run: pandoc -s generated-readme.html -o README.md
 
