@@ -1,7 +1,7 @@
 import json
 
 # Load the structured JSON from the redoc-cli output
-with open('../structured.json', 'r') as json_file:
+with open('structured.json', 'r') as json_file:
     data = json.load(json_file)
 
 # Define a function to format a single path
