@@ -1,9 +1,10 @@
 {
-    "dependencies": {
-      "swagger-jsdoc": "^6.0.0",
-      "markdown-table": "3.0.3"
-    },
-    "scripts": {
-      "generate-readme": "node ./scripts/generate-readme.js"
-    }
+  "type": "module",
+  "dependencies": {
+    "swagger-jsdoc": "^6.0.0",
+    "markdown-table": "3.0.3"
+  },
+  "scripts": {
+    "generate-readme": "node ./scripts/generate-readme.js"
   }
+}
