@@ -16,7 +16,7 @@ contact_email = openapi_data.get('info', {}).get('contact', {}).get('email', 'co
 license = openapi_data.get('info', {}).get('license', {}).get('name', 'License Name')
 
 # Define a function to generate the API documentation for a specific path and method
-def generate_method_documentation(path, method_data):
+def generate_method_documentation(path, method, method_data):
     documentation = []
 
     # Add title, version, and description
@@ -33,7 +33,6 @@ def generate_method_documentation(path, method_data):
     documentation.append(f"License: {license}\n")
 
     # Extract method-specific information
-    method = method_data['method']
     method_summary = method_data.get('summary', 'No summary available')
     method_description = method_data.get('description', 'No description available')
 
@@ -78,7 +77,7 @@ def generate_api_documentation(openapi_data):
     for path, path_data in openapi_data['paths'].items():
         for method, method_data in path_data.items():
             method_data['method'] = method.upper()
-            documentation.append(generate_method_documentation(path, method_data))
+            documentation.append(generate_method_documentation(path, method_data['method'], method_data))
 
     return "\n".join(documentation)
 
