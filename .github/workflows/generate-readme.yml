@@ -26,8 +26,8 @@ jobs:
 
       - name: Generate README (ESM)
         run: |
-          node ./generate-readme-esm.js
-        working-directory: scripts/
+          node ./scripts/generate-readme-esm.js
+        working-directory: ./
 
       - name: Commit & Push changes
         uses: actions-js/push@master
