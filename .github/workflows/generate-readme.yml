@@ -24,6 +24,15 @@ jobs:
       - name: Install markdown-table
         run: npm install swagger-jsdoc markdown-table
 
+      - name: Debug - List contents of scripts directory
+        run: ls -l ./scripts
+
+      - name: Debug - Cat the contents of scripts directory
+        run: cat ./scripts
+
+      - name: Debug - Cat the contents of generate-readme-esm.js
+        run: cat ./scripts/generate-readme-esm.js
+
       - name: Generate README (ESM)
         run: |
           node ./scripts/generate-readme-esm.js
