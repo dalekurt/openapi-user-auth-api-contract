@@ -22,20 +22,13 @@ jobs:
         with:
           node-version: "14" # Use the Node.js version you need
 
-      - name: Install dependencies
-        run: npm install js-yaml # Install js-yaml package
+      - name: Install redoc-cli
+        run: npm install -g redoc-cli
 
-      - name: Generate README
-        run: node ./scripts/generate-readme.js # Fix - Specify the correct path to the script
+      - name: Generate README from OpenAPI spec
+        run: redoc-cli bundle -o README.md openapi/openapi.yaml
 
       - name: Commit & Push changes
         uses: actions-js/push@master
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-    #   - name: Commit and push changes
-    #     run: |
-    #       git config --local user.email "action@github.com"
-    #       git config --local user.name "GitHub Action"
-    #       git add README.md
-    #       git commit -m "Generate README"
-    #       git push https://${{ secrets.PAT_TOKEN }}@github.com/${{ github.repository }}.git HEAD:main
