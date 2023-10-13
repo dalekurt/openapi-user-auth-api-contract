@@ -14,7 +14,7 @@ def format_path(path, path_data):
 
     parameters = path_data.get("parameters", [])
     if parameters:
-        formatted_path += '  *Required:* ' + ', '.join([f'{param["name"]}=[{param["type"]}]' for param in parameters]) + '\n'
+        formatted_path += '  *Required:* ' + ', '.join([f'{param["name"]}' + (f'[{param["type"]}]' if "type" in param else '') for param in parameters]) + '\n'
     else:
         formatted_path += '  None\n'
 
@@ -40,13 +40,13 @@ def format_api(api_data):
         formatted_api += f'**{path_data.get("summary", "No summary provided")} (ex {path})**\n----\n'
         formatted_api += f'**The description (ex {path_data.get("description", "No description provided")})**\n'
         formatted_api += f'* **URL Params**\n'
-        
+
         parameters = path_data.get("parameters", [])
         if parameters:
-            formatted_api += '  *Required:* ' + ', '.join([f'{param["name"]}=[{param["type"]}]' for param in parameters]) + '\n'
+            formatted_api += '  *Required:* ' + ', '.join([f'{param["name"]}' + (f'[{param.get("type", "")}]' if "type" in param else '') for param in parameters]) + '\n'
         else:
             formatted_api += '  None\n'
-        
+
         formatted_api += '* **Data Params**\n'
         if "requestBody" in path_data:
             try:
@@ -62,8 +62,10 @@ def format_api(api_data):
 
     return formatted_api
 
+
 # Transform the OpenAPI specification into the desired Markdown format
 markdown_content = format_api(openapi_spec)
+
 
 # Write the formatted content to the README.md file
 with open('README.md', 'w') as readme_file:

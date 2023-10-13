@@ -15,13 +15,13 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v2
-        with:
-          node-version: "14"
+      # - name: Set up Node.js
+      #   uses: actions/setup-node@v2
+      #   with:
+      #     node-version: "14"
 
-      - name: Install required npm packages
-        run: npm install -g redoc-cli
+      # - name: Install required npm packages
+      #   run: npm install -g redoc-cli
 
       - name: Install Python
         uses: actions/setup-python@v2
