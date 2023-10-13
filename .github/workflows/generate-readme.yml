@@ -13,10 +13,6 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      # debug
-      #   - name: Print OpenAPI file
-      #     run: cat openapi/openapi.yaml
-
       - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
@@ -25,20 +21,11 @@ jobs:
       - name: Install npm dependencies and generate README
         run: |
           # Install npm dependencies
-          # npm install
-
-          # Install the required Node.js modules
-          npm install swagger-jsdoc markdown-table
+          npm install
 
           # Run the generate-readme.js script
           node ./scripts/generate-readme.js
         working-directory: openapi/ #
-
-      #   - name: Install dependencies
-      #     run: npm install js-yaml # Install js-yaml package
-
-      #   - name: Generate README
-      #     run: node ./scripts/generate-readme.js # Fix - Specify the correct path to the script
 
       - name: Commit & Push changes
         uses: actions-js/push@master

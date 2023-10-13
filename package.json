@@ -1,9 +1,9 @@
 {
     "dependencies": {
-      "swagger-jsdoc": "latest_version",
-      "markdown-table": "latest_version"
+      "swagger-jsdoc": "^6.0.0",
+      "markdown-table": "^5.0.0"
     },
     "scripts": {
-      "generate-readme": "node generate-readme.js"
+      "generate-readme": "node ./scripts/generate-readme.js"
     }
   }
