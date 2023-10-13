@@ -1,5 +1,5 @@
-# No summary provided
-* **GET /admin/users/{userid}**
+**No summary provided**
+GET /admin/users/{userid}
 **/admin/users/{userid}**
 ----
 Retrieve specific user details by their unique ID, mobile number, or email address.
@@ -9,7 +9,7 @@ None
 ```json
 "None"
 ```
-* **PATCH /admin/users/{userid}**
+PATCH /admin/users/{userid}
 **/admin/users/{userid}**
 ----
 Modify user information, including first name, last name, email, mobile number, password, and activation status.
@@ -90,7 +90,7 @@ None
   }
 }
 ```
-* **DELETE /admin/users/{userid}**
+DELETE /admin/users/{userid}
 **/admin/users/{userid}**
 ----
 Permanently remove an existing user and their associated data.
@@ -123,8 +123,8 @@ None
   }
 }
 ```
-# No summary provided
-* **POST /admin/users**
+**No summary provided**
+POST /admin/users
 **/admin/users**
 ----
 Add a new user
@@ -186,7 +186,7 @@ None
   "description": "Create a new user with the specified details."
 }
 ```
-* **GET /admin/users**
+GET /admin/users
 **/admin/users**
 ----
 Retrieve a list of all users
@@ -196,8 +196,8 @@ None
 ```json
 "None"
 ```
-# No summary provided
-* **GET /users/{userid}**
+**No summary provided**
+GET /users/{userid}
 **/users/{userid}**
 ----
 Retrieve specific user details by their unique ID.
@@ -207,7 +207,7 @@ None
 ```json
 "None"
 ```
-* **PATCH /users/{userid}**
+PATCH /users/{userid}
 **/users/{userid}**
 ----
 Modify user information, including first name, last name, email, mobile number, password, and activation status.
@@ -274,8 +274,8 @@ None
   "description": "Customize user information according to your requirements."
 }
 ```
-# No summary provided
-* **POST /users**
+**No summary provided**
+POST /users
 **/users**
 ----
 Add a new user to your system effortlessly.
