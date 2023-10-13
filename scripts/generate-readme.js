@@ -7,7 +7,7 @@ const options = {
   definition: {
     openapi: '3.0.0', // specify the OpenAPI version
     info: {
-      title: 'Your API Title',
+      title: 'User Authentication API',
       version: '1.0.0',
     },
   },
