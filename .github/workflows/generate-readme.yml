@@ -22,11 +22,23 @@ jobs:
         with:
           node-version: "14" # Use the Node.js version you need
 
-      - name: Install dependencies
-        run: npm install js-yaml # Install js-yaml package
+      - name: Install npm dependencies and generate README
+        run: |
+          # Install npm dependencies
+          npm install
 
-      - name: Generate README
-        run: node ./scripts/generate-readme.js # Fix - Specify the correct path to the script
+          # Install the required Node.js modules
+          npm install swagger-jsdoc markdown-table
+
+          # Run the generate-readme.js script
+          node ./scripts/generate-readme.js
+        working-directory: openapi/ #
+
+      #   - name: Install dependencies
+      #     run: npm install js-yaml # Install js-yaml package
+
+      #   - name: Generate README
+      #     run: node ./scripts/generate-readme.js # Fix - Specify the correct path to the script
 
       - name: Commit & Push changes
         uses: actions-js/push@master
