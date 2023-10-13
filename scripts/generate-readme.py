@@ -7,10 +7,10 @@ with open('openapi/openapi.yaml', 'r') as yaml_file:
     openapi_spec = yaml.safe_load(yaml_file)
 
 # Define a function to format a single path
-def format_path(path, path_data):
-    formatted_path = f'**{path_data.get("summary", "No summary provided")}**\n----\n'
-    formatted_path += f'  {path_data.get("description", "No description provided")}.\n'
-    formatted_path += f'* **URL Params**\n'
+def format_path(path, method, path_data):
+    formatted_path = f'**{method} {path}**\n----\n'
+    formatted_path += f'  {path_data.get("summary", "No summary provided")}.\n'
+    formatted_path += '* **URL Params**\n'
 
     parameters = path_data.get("parameters", [])
     if parameters:
@@ -51,7 +51,9 @@ def format_api(api_data):
     formatted_api = ""
     paths = api_data.get("paths", {})
     for path, path_data in paths.items():
-        formatted_api += format_path(path, path_data)
+        for method, method_data in path_data.items():
+            if method not in ["parameters", "summary", "description"]:
+                formatted_api += format_path(path, method, method_data)
 
     return formatted_api
 
