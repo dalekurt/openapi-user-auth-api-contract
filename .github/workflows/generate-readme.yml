@@ -17,17 +17,6 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: "14"
-          check-latest: true
-          registry-url: "https://registry.npmjs.org"
-
-      - name: Set NODE_OPTIONS to enable ESM
-        run: echo "NODE_OPTIONS=--experimental-modules" >> $GITHUB_ENV
-
-      - name: Set package.json for ESM
-        run: |
-          echo '{
-            "type": "module"
-          }' > package.json
 
       - name: Install markdown-table
         run: npm install swagger-jsdoc markdown-table
@@ -41,7 +30,6 @@ jobs:
       - name: Generate README (ESM)
         run: |
           node ./scripts/generate-readme.js
-        working-directory: ./
 
       - name: Commit & Push changes
         uses: actions-js/push@master
