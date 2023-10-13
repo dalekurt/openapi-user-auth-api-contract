@@ -52,7 +52,9 @@ def format_api(api_data):
     formatted_api = ""
     paths = api_data.get("paths", {})
     for path, path_data in paths.items():
-        formatted_api += format_path(path, path_data)
+        for method, method_data in path_data.items():
+            if method not in ["parameters", "summary", "description"]:
+                formatted_api += format_path(path, method, method_data)
 
     return formatted_api
 
