@@ -23,8 +23,8 @@ jobs:
 
       - name: Generate README
         run: |
-          node ./scripts/generate-readme.js
-        working-directory: openapi/
+          node ./generate-readme.js
+        working-directory: scripts/
 
       - name: Commit & Push changes
         uses: actions-js/push@master
