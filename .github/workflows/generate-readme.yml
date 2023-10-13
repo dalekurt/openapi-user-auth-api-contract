@@ -23,14 +23,17 @@ jobs:
       - name: Set NODE_OPTIONS to enable ESM
         run: echo "NODE_OPTIONS=--experimental-modules" >> $GITHUB_ENV
 
+      - name: Set package.json for ESM
+        run: echo '{"type": "module"}' > package.json
+
       - name: Install markdown-table
         run: npm install swagger-jsdoc markdown-table
 
-      - name: Debug - List contents of scripts directory
-        run: ls -l ./scripts
+      # - name: Debug - List contents of scripts directory
+      #   run: ls -l ./scripts
 
-      - name: Debug - Cat the contents of generate-readme-esm.js
-        run: cat ./scripts/generate-readme-esm.js
+      # - name: Debug - Cat the contents of generate-readme-esm.js
+      #   run: cat ./scripts/generate-readme-esm.js
 
       - name: Generate README (ESM)
         run: |
