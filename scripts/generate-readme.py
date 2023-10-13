@@ -23,10 +23,10 @@ def format_api(api_data):
     formatted_api = ""
     paths = api_data.get("paths", {})
     for path, path_data in paths.items():
-        formatted_api += f'# {path_data.get("summary", "No summary provided")}\n'
+        formatted_api += f'**{path_data.get("summary", "No summary provided")}**\n'
         for method, method_data in path_data.items():
             if method not in ["parameters", "summary", "description"]:
-                formatted_api += f'* **{method.upper()} {path}**\n'
+                formatted_api += f'{method.upper()} {path}\n'
                 formatted_api += format_path(path, method_data)
     return formatted_api
 
