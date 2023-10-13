@@ -1,6 +1,6 @@
 const fs = require('fs');
 const swaggerJSDoc = require('swagger-jsdoc');
-import markdownTable from 'markdown-table';
+import { table } from 'markdown-table';
 
 // Define options for swagger-jsdoc
 const options = {
@@ -29,6 +29,6 @@ const table = markdownTable([
 ]);
 
 // Write the table to the README.md file
-fs.writeFileSync('./README.md', table);
+fs.writeFileSync('./README.md', markdown);
 
 console.log('README generated successfully');
