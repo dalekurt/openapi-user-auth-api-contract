@@ -1,25 +1,25 @@
 const fs = require('fs');
 const swaggerJSDoc = require('swagger-jsdoc');
-import { table } from 'markdown-table';
+import { table as markdownTable } from 'markdown-table';
 
 // Define options for swagger-jsdoc
 const options = {
   definition: {
-    openapi: '3.0.0', // specify the OpenAPI version
+    openapi: '3.0.0',
     info: {
       title: 'User Authentication API',
       version: '1.0.0',
     },
   },
-  apis: ['./openapi/openapi.yaml'], // path to your OpenAPI file
+  apis: ['./openapi/openapi.yaml'], 
 };
 
 const swaggerSpec = swaggerJSDoc(options);
 
 // Generate a markdown table from the Swagger spec
-const table = markdownTable([
+const markdown = markdownTable([
   ['Endpoint', 'Method', 'Description'],
-  ...swaggerSpec.paths.map((path, pathName) =>
+  ...swaggerSpec.paths.flatMap((path, pathName) =>
     Object.entries(path).map(([method, endpoint]) => [
       pathName,
       method.toUpperCase(),
