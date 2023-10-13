@@ -23,11 +23,6 @@ jobs:
       - name: Install required npm packages
         run: npm install -g redoc-cli
 
-      - name: Generate Structured JSON from OpenAPI
-        run: |
-          redoc-cli bundle openapi/openapi.yaml --output structured.json
-          cat structured.json
-
       - name: Install Python
         uses: actions/setup-python@v2
         with:

@@ -10,16 +10,12 @@ with open('openapi/openapi.yaml', 'r') as yaml_file:
 def format_path(path, path_data):
     formatted_path = f'**{path}**\n----\n{path_data.get("description", "No description provided")}\n'
     formatted_path += f'* **URL Params**\n{path_data.get("parameters", "None")}\n'
-    data_params = path_data.get("requestBody", "None")
-    if data_params != "None":
-        try:
-            json_data = json.loads(data_params)
-        except json.JSONDecodeError as e:
-            print(f"Error decoding JSON in requestBody: {e}")
-            # Handle the error as needed, e.g., provide a default JSON structure
-            json_data = {}
-        formatted_path += f'* **Data Params**\n```json\n{json.dumps(json_data, indent=2)}\n```\n'
-
+    
+    # Convert the dictionary to a nicely formatted JSON string
+    formatted_data_params = json.dumps(path_data.get("requestBody", "None"), indent=2)
+    formatted_path += f'* **Data Params**\n```json\n{formatted_data_params}\n```\n'
+    
+    # Add more sections as needed, e.g., headers, responses
     return formatted_path
 
 # Define a function to format the entire API documentation
@@ -38,3 +34,5 @@ def format_api(api_data):
 markdown_content = format_api(openapi_spec)
 
 # Write the formatted content to the README.md file
+with open('README.md', 'w') as readme_file:
+    readme_file.write(markdown_content)
