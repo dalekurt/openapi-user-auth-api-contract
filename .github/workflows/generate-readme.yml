@@ -31,8 +31,19 @@ jobs:
       - name: Generate README from OpenAPI
         run: redoc-cli bundle openapi/openapi.yaml -o generated-readme.html
 
+      - name: Install Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: "3.10"
+
+      - name: Install html2md
+        run: pip install html2md
+
       - name: Convert HTML to Markdown
-        run: pandoc -s generated-readme.html -o README.md
+        run: |
+          python -c "import html2md; html = open('generated-readme.html').read(); markdown = html2md.convert(html); open('README.md', 'w').write(markdown)"
+      # - name: Convert HTML to Markdown
+      #   run: pandoc -s generated-readme.html -o README.md
 
       # - name: Debug - List contents of scripts directory
       #   run: ls -l ./scripts
