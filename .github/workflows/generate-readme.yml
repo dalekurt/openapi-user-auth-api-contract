@@ -23,8 +23,6 @@ jobs:
       - name: Install required npm packages
         run: npm install -g redoc-cli
 
-      # - name: Generate README from OpenAPI
-      #   run: redoc-cli bundle openapi/openapi.yaml -o generated-readme.html
       - name: Generate Structured JSON from OpenAPI
         run: |
           redoc-cli bundle openapi/openapi.yaml --output structured.json
