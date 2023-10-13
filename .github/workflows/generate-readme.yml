@@ -21,6 +21,9 @@ jobs:
       - name: Install npm dependencies
         run: npm install
 
+      - name: Install markdown-table@2.0.1
+        run: npm install markdown-table@2.0.1
+
       - name: Generate README
         run: |
           node ./generate-readme.js
