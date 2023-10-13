@@ -40,7 +40,7 @@ jobs:
 
       - name: Generate README (ESM)
         run: |
-          node ./scripts/generate-readme-esm.js
+          node ./scripts/generate-readme.js
         working-directory: ./
 
       - name: Commit & Push changes
