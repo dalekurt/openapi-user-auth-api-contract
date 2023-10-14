@@ -42,7 +42,7 @@ jobs:
         uses: hatamiarash7/openapi-generator@v0.3.0
         with:
           generator: python
-          openapi-file: openapi/openapi.yml
+          openapi-file: openapi/openapi.yaml
 
       # - name: rdme 🦉 Sync to ReadMe
       #   uses: readmeio/rdme@v8
