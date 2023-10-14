@@ -32,6 +32,16 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Create temporary package.json
+        run: |
+          echo '{
+            "name": "temp-package",
+            "version": "1.0.0"
+          }' > package.json
+
+      - name: Install openapi-to-md
+        run: npm install openapi-to-md
+
       - name: Generate README
         run: npx openapi-to-md --input openapi/openapi.yaml --output README.md
 
