@@ -40,7 +40,7 @@ jobs:
         run: npm install openapi-to-md
 
       - name: Generate README
-        run: npx openapi-to-md --input openapi/openapi.yaml --output README.md
+        run: openapi-to-md openapi/openapi.yaml > README.md
 
       - name: Commit & Push changes
         uses: actions-js/push@master
