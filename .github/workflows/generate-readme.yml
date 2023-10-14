@@ -32,11 +32,11 @@ jobs:
             "version": "1.0.0"
           }' > package.json
 
-      - name: Install openapi-to-md
-        run: npm install -g openapi-to-md
+      - name: Install widdershins
+        run: npm install -g widdershins
 
-      - name: Generate README
-        run: openapi-to-md openapi/openapi.yaml > README.md
+      - name: Generate Markdown documentation
+        run: npx widdershins openapi/openapi.yaml -o README.md
 
       - name: Commit & Push changes
         run: |
