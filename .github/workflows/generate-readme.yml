@@ -11,9 +11,18 @@ jobs:
   generate-readme:
     runs-on: ubuntu-latest
 
+    permissions:
+      contents: read
+      packages: read
+      statuses: write
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
+        with:
+          # Full git history is needed to get a proper
+          # list of changed files within `super-linter`
+          fetch-depth: 0
 
       # - name: Set up Node.js
       #   uses: actions/setup-node@v2
@@ -22,17 +31,34 @@ jobs:
 
       # - name: Install required npm packages
       #   run: npm install -g redoc-cli
+      - name: Lint Code Base
+        uses: super-linter/super-linter@v5
+        env:
+          VALIDATE_ALL_CODEBASE: false
+          DEFAULT_BRANCH: main
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Install Python
-        uses: actions/setup-python@v2
+      - name: Generate code
+        uses: hatamiarash7/openapi-generator@v0.3.0
         with:
-          python-version: "3.10"
+          generator: python
+          openapi-file: openapi/openapi.yml
 
-      - name: Install Python dependencies
-        run: pip install pyyaml
+      # - name: rdme 🦉 Sync to ReadMe
+      #   uses: readmeio/rdme@v8
+      #   with:
+      #     rdme: openapi ./path-to-file.json --key=${{ secrets.README_API_KEY }} --id=API_DEFINITION_ID
 
-      - name: Generate README from OpenAPI
-        run: python scripts/generate-readme.py
+      # - name: Install Python
+      #   uses: actions/setup-python@v2
+      #   with:
+      #     python-version: "3.10"
+
+      # - name: Install Python dependencies
+      #   run: pip install pyyaml
+
+      # - name: Generate README from OpenAPI
+      #   run: python scripts/generate-readme.py
 
       - name: Commit & Push changes
         uses: actions-js/push@master
