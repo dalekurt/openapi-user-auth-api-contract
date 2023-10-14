@@ -44,10 +44,4 @@ jobs:
           git config --global user.email "hello@dalekurtmurray.com"
           git add README.md
           git commit -m "Update README.md"
-
-      - name: Commit & Push changes
-        uses: ad-m/github-push-action@master
-        with:
-          branch: main
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          force: true
+          git push origin main
