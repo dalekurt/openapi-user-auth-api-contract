@@ -37,7 +37,7 @@ jobs:
           }' > package.json
 
       - name: Install openapi-to-md
-        run: npm install openapi-to-md
+        run: npm install -g openapi-to-md
 
       - name: Generate README
         run: openapi-to-md openapi/openapi.yaml > README.md
