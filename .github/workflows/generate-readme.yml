@@ -24,41 +24,16 @@ jobs:
           # list of changed files within `super-linter`
           fetch-depth: 0
 
-      # - name: Set up Node.js
-      #   uses: actions/setup-node@v2
-      #   with:
-      #     node-version: "14"
-
-      # - name: Install required npm packages
-      #   run: npm install -g redoc-cli
-      - name: Lint Code Base
-        uses: super-linter/super-linter@v5
-        env:
-          VALIDATE_ALL_CODEBASE: false
-          DEFAULT_BRANCH: main
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Generate code
-        uses: hatamiarash7/openapi-generator@v0.3.0
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
         with:
-          generator: python
-          openapi-file: openapi/openapi.yaml
+          node-version: "14"
 
-      # - name: rdme 🦉 Sync to ReadMe
-      #   uses: readmeio/rdme@v8
-      #   with:
-      #     rdme: openapi ./path-to-file.json --key=${{ secrets.README_API_KEY }} --id=API_DEFINITION_ID
+      - name: Install dependencies
+        run: npm ci
 
-      # - name: Install Python
-      #   uses: actions/setup-python@v2
-      #   with:
-      #     python-version: "3.10"
-
-      # - name: Install Python dependencies
-      #   run: pip install pyyaml
-
-      # - name: Generate README from OpenAPI
-      #   run: python scripts/generate-readme.py
+      - name: Generate README
+        run: npx openapi-to-md --input openapi/openapi.yaml --output README.md
 
       - name: Commit & Push changes
         uses: actions-js/push@master
